@@ -110,7 +110,7 @@ foreach ($allBranches[$remoteRepo] as $branchToDelete) {
     if (in_array($branchToDelete, $mergedBranches[$remoteRepo])) {
         if ($diff->days >= MERGED_BRANCH_KEPT_DAYS) {
             printf("Removing branch '%s'\n", $currBranch);
-            if ($debug == false) {
+            if (empty($debug)) {
                 exec(sprintf('git push %s %s', escapeshellarg($remoteRepo), escapeshellarg(":" . $branchToDelete)));
             }
             $removed[$committerName][] = array(
